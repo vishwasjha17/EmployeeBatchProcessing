@@ -80,4 +80,20 @@ public class MysqlUtils {
                         List<RedisEntity> rsEntity = getBatchToUpdate(listOfEmployees,response);
                         RedisService.batchUpdate(rsEntity);
     }
+
+    public static Boolean isEmployeeUpdated(Integer employeeOffset){
+        Boolean isEmployPresent = false;
+        try (Connection connection = MySqlClientPool.getDataSource().getConnection()) {
+            String query = "SELECT * FROM employee WHERE empoffset ="+employeeOffset;
+            try (Statement statement = connection.createStatement()) {
+                ResultSet resultSet = statement.executeQuery(query);
+                isEmployPresent = resultSet.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isEmployPresent;
+    }
+
+
 }

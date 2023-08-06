@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import service.consumer.EmployeeDataProcessor;
 import service.redisservice.RedisService;
+import utils.mySqlUtils.MysqlUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -69,7 +70,7 @@ public class EmployeeQueue implements Runnable{
                         empPhoneNumber = employeeContent[2].trim();
                         empMailId = employeeContent[3].trim();
                         String lookUpRedis = RedisService.getKey(rowOffSet.toString());
-                        if(lookUpRedis == null || lookUpRedis.equals(Status.IN_PROCESS.toString())){
+                        if(lookUpRedis == null || (lookUpRedis.equals(Status.IN_PROCESS.toString()) && !MysqlUtils.isEmployeeUpdated(rowOffSet))){ /** instead of Redis To Look for Source of Truth look the db itselt **/
                             inMemoryQueue.add(new Employee(rowOffSet.toString(),empId,empName,empMailId,empPhoneNumber));
                             redisEntityList.add(new RedisEntity(rowOffSet.toString(),Status.IN_PROCESS.toString()));
                         }else{

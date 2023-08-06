@@ -49,7 +49,6 @@ public class RedisService {
       }
 
 
-
       public static String getKey(String redisKey){
             log.info("\u001B[32m" + String.format("[[REDIS_REQUEST]] :: lookup For Redis Key:: {%s}",redisKey) + "\u001B[0m");
             try (Jedis jedis = RedisClientPool.getInstance().getJedis()) {
