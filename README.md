@@ -15,18 +15,14 @@ Some Dependencies Need to Be installed <br>
    https://hub.docker.com/_/mysql<br>
 5. Need to Mention the EMPLOYEE_SOURCE_FILE_PATH in application.properties <br>
 6. Need to Create a employee table to get the recoreds of employess<br>
+<br>
 
-7. create table employee(
-     empoffset bigint not null primary key,
-     empid varchar(255),
-     empname varchar(255),
-     empphone varchar(255),
-     empmailid varchar(255),
-     validemployee varchar(10)
+  create table employee(empoffset bigint not null primary key,empid varchar(255),empname varchar(255),empphone varchar(255),empmailid 
+ varchar(255),validemployee varchar(10)
    )
 <br>
 <br>
-8. There are Two Status in Redis corrosponding to each offset IN_PROCESS or COMPLETED so that even if application restarts next time
+9. There are Two Status in Redis corrosponding to each offset IN_PROCESS or COMPLETED so that even if application restarts next time
    we know only which element to push in inMemory Queue in two cases either we don't find in redis or its status is inprocess because likely possible that we have marked the status in_process for some employee and even before updation to db our applicaiton shutdowns
    so in both cases we will requeue else if completed in db in batch trancation no need to consider that offset again in case of app shutdonw.
    <br>
