@@ -8,7 +8,7 @@ Some Dependencies Need to Be installed <br>
        <br>
        <br>
 3. You need mysql up and running<br>
-      $ docker run --name some-mysql -p3030:3030 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag<br>
+      $ docker run --name some-mysql -p3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag<br>
       $ docker ps<br>
 
    for more detail follow offical doc<br>
