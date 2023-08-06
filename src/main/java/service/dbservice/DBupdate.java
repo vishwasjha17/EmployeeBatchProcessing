@@ -3,8 +3,6 @@ package service.dbservice;
 import entity.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.consumer.EmployeeDataProcessor;
-import utils.mySqlUtils.MySqlClientPool;
 import utils.mySqlUtils.MysqlUtils;
 
 import java.io.FileInputStream;

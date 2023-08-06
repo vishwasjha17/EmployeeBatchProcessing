@@ -108,7 +108,7 @@ public class EmployeeQueue implements Runnable{
             bw.write("empId,empName,empPhoneNumber,empEmailId");
             bw.newLine();
             Integer rowNumber = 0;
-            while(rowNumber <=1552359L){
+            while(rowNumber <=155230L){
                 Long randomNumber = ThreadLocalRandom.current().nextLong(10001);
                 String empId = "123456";
                 String empName = "empName vishwas";
