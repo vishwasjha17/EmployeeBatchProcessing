@@ -26,7 +26,7 @@ public class EmployeeQueue implements Runnable{
         try {
             this.rowOffSet = 0;
             bufferedReader = new BufferedReader(new FileReader(AppMetrics.EMPLOYEE_SOURCE_FILE_PATH));
-            logger.info("\u001B[32m" + String.format("[[ERROR]] :: Employee Redis Queue Producer Initialization Started::")+ "\u001B[0m");
+            logger.info("\u001B[32m" + String.format("[[SUCCESS]] :: Employee Redis Queue Producer Initialization Started::")+ "\u001B[0m");
         }catch (Exception ex){
             logger.error("\u001B[31m" + String.format("[[ERROR]] :: Employee Redis Queue Producer cause :: {%s}", ex.getMessage()) + "\u001B[0m");
         }
@@ -36,7 +36,7 @@ public class EmployeeQueue implements Runnable{
              this.rowOffSet = 0;
              bufferedReader = new BufferedReader(new FileReader(filePath));
              bufferedReader.readLine(); // skipping Header ..
-             logger.info("\u001B[32m" + String.format("[[ERROR]] :: Employee Redis Queue Producer Initialization Started::")+ "\u001B[0m");
+             logger.info("\u001B[32m" + String.format("[[SUCCESS]] :: Employee Redis Queue Producer Initialization Started::")+ "\u001B[0m");
          }catch (Exception ex){
              logger.error("\u001B[31m" + String.format("[[ERROR]] :: Employee Redis Queue Producer cause :: {%s}", ex.getMessage()) + "\u001B[0m");
          }
@@ -107,27 +107,23 @@ public class EmployeeQueue implements Runnable{
             BufferedWriter bw = new BufferedWriter(new FileWriter(AppMetrics.EMPLOYEE_SOURCE_FILE_PATH));
             bw.write("empId,empName,empPhoneNumber,empEmailId");
             bw.newLine();
-            bw.flush();
-            bw.write("123456,vishwas kumar,7091444909,vishwas14@gmail.com");
-            bw.newLine();
-            bw.flush();
             Integer rowNumber = 0;
-            while(rowNumber < 10000){
+            while(rowNumber <=1552359L){
                 Long randomNumber = ThreadLocalRandom.current().nextLong(10001);
-
                 String empId = "123456";
                 String empName = "empName vishwas";
                 String empPhoneNumber = "7003381857";
                 String empEmailId = "empEmailId"+randomNumber+"@gmail.com";
-                if(randomNumber>=400) {
+                if(randomNumber>=400L) {
                     empPhoneNumber = "7252542452452";
                     empName ="014Vishwas kumar";
                 }
-
                 bw.write(empId+","+empName+","+empPhoneNumber+","+empEmailId);
                 bw.newLine();
                 bw.flush();
                 rowNumber++;
+
             }
+        System.out.println("Row Number :: "+ rowNumber);
     }
 }
