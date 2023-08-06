@@ -53,21 +53,21 @@ MYSQL_MAX_CONNECTION_TIMEOUT=30000 <br>
 
 Important Note :-
 
-Three Diffrent Approaches taken based upon Problem Faced  ::
-Branch master 
+Three Diffrent Approaches taken based upon Problem Faced  ::<br>
+Branch master <br>
 <br>
 <br>
 Initial Approach was Assuming Redis Batch Upates Working Properly
 But it's not the Case the Completed stage were not updating properly even Though it's getting updated in msSql
 <br>
 <br>
-Branch masterRetry ::
+Branch masterRetry ::<br>
 <br>
 Have Tried the Updates in Batches In redis Transaction for consistency and even pipelined approach 
 giving with Retry Included Still For Some of the Cases the updates were not happing properly in redis
 <br>
 <br>
-Branch masterFinal ::
+Branch masterFinal ::<br>
 <br>
 Either at the Time of Confirmation If my App Restarts i can assume purely source of truth to mysql table being indexing on offset but 
 still to not put the Pressure over Mssql Db have Used the Redis in case if there is nothing in redis means we can directly consider the
