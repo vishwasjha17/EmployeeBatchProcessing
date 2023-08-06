@@ -18,6 +18,10 @@ Some Initial Configuraiton in application.properties file need to be made
             empoffset bigint, empid varchar(255), empname varchar(255), empphone varchar(255), empmailid varchar(255), validemployee varchar(10)
         )
 
+8. There are Two Status in Redis corrosponding to each offset IN_PROCESS or COMPLETED so that even if application restarts next time
+   we know only which element to push in inMemory Queue in two cases either we don't find in redis or its status is inprocess because likely possible that we have marked the status in_process for some employee and even before updation to db our applicaiton shutdowns
+   so in both cases we will requeue else if completed in db in batch trancation no need to consider that offset again in case of app shutdonw.
+
      you can see Valid Record :: select * from employee whre validemployee="YES"      
    
      Note :- validemployee(NO/YES) filed is used to get the Case where Employee is not valid employee as per constraint "YES" if valid "NO" elsewise
@@ -39,6 +43,12 @@ MYSQL_PASSWORD=my-secret-pw <br>
 MYSQL_MAX_POOL_SIZE=10 <br>
 MYSQL_MIN_IDLE_CONNECTIONS=5 <br>
 MYSQL_MAX_CONNECTION_TIMEOUT=30000 <br>
+
+
+
+<br>
+     The End Feel Free to Provide andy further improvments which can be done :)
+<br>
 
 
 
