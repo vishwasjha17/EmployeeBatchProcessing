@@ -15,7 +15,7 @@ Some Dependencies Need to Be installed <br>
    https://hub.docker.com/_/mysql<br>
 5. Need to Mention the EMPLOYEE_SOURCE_FILE_PATH in application.properties <br>
 6. Need to Create a employee table to get the recoreds of employess<br>
-7.     create table emplpoyee(
+7.     create table employee(
             empoffset bigint, empid varchar(255), empname varchar(255), empphone varchar(255), empmailid varchar(255), validemployee varchar(10)
         )<br>
 <br>
