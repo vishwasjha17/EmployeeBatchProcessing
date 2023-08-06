@@ -51,12 +51,34 @@ MYSQL_MAX_CONNECTION_TIMEOUT=30000 <br>
 
 
 
+Important Note :-
+
+Three Diffrent Approaches taken based upon Problem Faced  ::
+Branch master 
 <br>
+<br>
+Initial Approach was Assuming Redis Batch Upates Working Properly
+But it's not the Case the Completed stage were not updating properly even Though it's getting updated in msSql
+<br>
+<br>
+Branch masterRetry ::
+<br>
+Have Tried the Updates in Batches In redis Transaction for consistency and even pipelined approach 
+giving with Retry Included Still For Some of the Cases the updates were not happing properly in redis
+<br>
+<br>
+Branch masterFinal ::
+<br>
+Either at the Time of Confirmation If my App Restarts i can assume purely source of truth to mysql table being indexing on offset but 
+still to not put the Pressure over Mssql Db have Used the Redis in case if there is nothing in redis means we can directly consider the
+element else in case if the state is marked as in_Process but we make the confirmation before putting to internal queue else if it is 
+completed no need to consider.
+
+The Third Approach Seems Better in Case we don't wan't to put the pressure of mssql else we coule have completly 
+removed the redis from the picture and use the mssql being indexing on the empoffset for lookup.
+
 <hr>    The End Feel Free to Provide andy further improvments which can be done :) <hr>
 <br>
-
-
-
 
 
 
